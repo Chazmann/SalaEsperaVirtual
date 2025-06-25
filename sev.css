@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #2F368F;
+  --primary-color-light: #606bb1;
+  --secondary-color: #49985A;
+  --text-color: #ffffff;
+  --text-color-secondary: #000000;
+}
+
+body {
+  background: linear-gradient(to right, #2F368F, #49985A);
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+}
+
+.dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100 1000;
+  font-style: normal;
+}
+
+.box {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.logo {
+  width: 100%;
+  flex: 0 0 40px;
+  padding: 2em 2em 0em 2em;
+
+  img {
+    object-fit: cover;
+    height: 50px;
+  }
+}
+
+.fw-100 {
+  font-weight: 100;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fs-1 {
+  font-size: 2em;
+}
+
+.fs-2 {
+  font-size: 1.5em;
+}
+
+.mb-3 {
+  margin-bottom: 1.5em;
+}
+
+.mt-3 {
+  margin-top: 1.5em;
+}
+
+.mt-5 {
+  margin-top: 2em;
+}
+
+.form-label {
+  font-weight: 300;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.form-control {
+  font-size: 1.2em;
+}
+
+.inputDNI {
+  border-radius: .25em;
+  border: solid 6px var(--secondary-color);
+  font-weight: 700;
+  text-align: center;
+  padding: 0.5em 1em;
+  max-width: 15ch;
+  color: var(--primary-color);
+  font-size: 3em;
+}
+
+.inputDNI::placeholder {
+  color: var(--primary-color-light);
+  font-weight: 300;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
+main {
+  text-align: center;
+  padding: 2em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  overflow: visible;
+
+
+}
+
+  img.ondaInferior {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    min-width: 600px;
+    height: 100%;
+    max-height: 140px;
+
+
+  }

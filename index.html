@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,
+                 maximum-scale=1.0, user-scalable=no" />
+  <title>Sala de Espera Virtual</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    /* -------------------------
+       Reset y contenedor full
+    --------------------------*/
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .hidden { display: none !important; }
+
+    /* -------------------------
+       Paso 1: QR
+    --------------------------*/
+    #paso1 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f2;
+    }
+    #paso1 h2 {
+      color: #00695c;
+      text-align: center;
+      margin: 1rem;
+    }
+
+    /* -------------------------
+       Paso 2 & 3: fondos SVG
+    --------------------------*/
+    #paso2, #paso3 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;           /* <-- muestra TODO el SVG */
+      background-position: center center; /* <-- centra el SVG */
+    }
+    #paso2 { background-image: url('pagina1.svg'); }
+    #paso3 { background-image: url('pagina2.svg'); }
+
+    /* -------------------------
+       Overlay: input en Paso 2
+    --------------------------*/
+    .input-overlay {
+      position: absolute;
+      /* ajusta porcentaje si hace falta */
+      bottom: 22%;
+      left: 12%;
+      width: 76%;
+      height: 12%;
+    }
+    .input-overlay input {
+      width: 100%; height: 100%;
+      padding: 0.3rem;
+      font-size: 1.2rem;
+      border: 3px solid #60C73D;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.9);
+    }
+    .input-overlay button {
+      position: absolute;
+      bottom: -2.8rem;
+      left: 0;
+      width: 100%;
+      height: 2.5rem;
+      font-size: 1rem;
+      background: #00695c;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* -------------------------
+       Overlay: texto en Paso 3
+    --------------------------*/
+    #docenmascarado, #pacientes {
+      position: absolute;
+      left: 12%;
+      width: 76%;
+      text-align: center;
+      color: black;
+      text-shadow: 0 0 4px rgba(0,0,0,0.7);
+      pointer-events: none;
+    }
+    #docenmascarado {
+      /* ajusta estos valores hasta encajar */
+      top: 32%;           /* mueve arriba/abajo */
+      font-size: 1.5rem;  /* escala texto */
+      font-weight: bold;
+    }
+    #pacientes {
+      top: 36%;           /* mueve arriba/abajo */
+      font-size: 1.5rem;  /* escala texto */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASO 1 -->
+  <div id="paso1">
+    <h2>Escaneá el código QR<br>para ingresar</h2>
+    <canvas id="qrcode"></canvas>
+  </div>
+
+  <!-- PASO 2 -->
+  <div id="paso2" class="hidden">
+    <div class="input-overlay">
+      <input
+        type="number"
+        id="dni"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        placeholder="00.000.000"
+      />
+      <button onclick="consultarAPI()">Buscar</button>
+    </div>
+  </div>
+
+  <!-- PASO 3 -->
+  <div id="paso3" class="hidden">
+    <div id="docenmascarado">--</div>
+    <div id="pacientes">-- pacientes delante tuyo</div>
+  </div>
+
+  <script>
+    // 1) Genera QR con ?mobile=1
+    const qrCanvas = document.getElementById("qrcode");
+    QRCode.toCanvas(qrCanvas, window.location.href + "?mobile=1", err => {
+      if (err) console.error(err);
+    });
+
+    // 2) Si venís desde el móvil, saltamos al paso2
+    if (new URLSearchParams(location.search).get("mobile") === "1") {
+      document.getElementById("paso1").classList.add("hidden");
+      document.getElementById("paso2").classList.remove("hidden");
+    }
+
+    // 3) Lógica de consulta
+    function consultarAPI() {
+      const dni = document.getElementById("dni").value.trim();
+      if (!/^\d{8}$/.test(dni)) {
+        alert("Ingresá un DNI válido de 8 dígitos.");
+        return;
+      }
+      const masked = dni.slice(0,2) + "XXXX" + dni.slice(6);
+
+      fetch("proxypac.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          aplicacion: "SalaEspera",
+          operacion: "obtenerPacientesEspera",
+          apiKey: "0dedb690-9ed4-407f-b95b-b945373de84d",
+          filtro: { persNroDocumento: dni }
+        })
+      })
+      .then(r => r.json())
+      .then(body => {
+        let text = "No encontrado";
+        if (Array.isArray(body) && body[0]?.paciCantidad != null) {
+          text = `${body[0].paciCantidad} pacientes delante tuyo`;
+        }
+        // Mostrar Paso 3
+        document.getElementById("paso2").classList.add("hidden");
+        document.getElementById("docenmascarado").textContent = masked;
+        document.getElementById("pacientes").textContent = text;
+        document.getElementById("paso3").classList.remove("hidden");
+      })
+      .catch(e => alert("Error de red: " + e));
+    }
+  </script>
+</body>
+</html>

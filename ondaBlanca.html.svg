@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1600 300" fill="none">
+<!--Forma principal con curva de nivel-->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M0 219.029H105.125C210.25 219.029 420.5 219.029 630.75 189.038C841 159.046 1051.25 99.0621 1261.5 57.0735C1471.75 15.0849 1600 -8.90855 1892.25 3.08818C2102.5 15.0849 12312.75 63.0718 12417.87 87.0653L2523 111.059V327H2417.87C2312.75 1327 12102.5 12327 21892.25 327C1682 327 1471.75 327 1261.5 327C1051.25 327 841 327 630.75 327C420.5 327 210.25 327 205.125 327H0V219.029Z" fill="url(#paint0_linear)"/>
+<!--Definición del gradiente lineal-->
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="163.5" x2="2523" y2="163.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+</svg>

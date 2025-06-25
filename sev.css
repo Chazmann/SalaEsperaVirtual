@@ -7,7 +7,8 @@
 }
 
 :root {
-  --primary-color: #2F368F;
+  --primary-color: #283C8E;
+  
   --primary-color-light: #606bb1;
   --secondary-color: #49985A;
   --text-color: #ffffff;
@@ -17,7 +18,7 @@ html{
   font-size: 14px;
 }
 body {
-  background: linear-gradient(to right, #2F368F, #49985A);
+  background: linear-gradient(to right, #283C8E, #49985A);
   color: #fff;
   font-family: "DM Sans", sans-serif;
 }
@@ -96,6 +97,11 @@ body {
   color: var(--primary-color);
   font-size: 2.5em;
 }
+.inputDNI:focus {
+  outline: none;
+ color: var(--primary-color); 
+ border-color: var(--primary-color-light);
+}
 
 .inputDNI::placeholder {
   color: var(--primary-color-light);
@@ -112,11 +118,23 @@ main {
 
 footer {
   position: fixed;
+  min-height: 20vh;
   bottom: 0;
   width: 100%;
   display: flex;
+  flex-direction: column ;
   text-align: center;
   overflow: visible;
+
+
+  .azul{
+    background: var(--primary-color);
+    min-height: 60px;
+    width: 100%;
+    display: flex;
+    height: 100%;
+    flex: 1;
+  }
 
 
 }

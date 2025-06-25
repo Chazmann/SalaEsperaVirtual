@@ -11,6 +11,8 @@
   
   --primary-color-light: #606bb1;
   --secondary-color: #49985A;
+  --secondary-color-light: #6abf7c;
+  --secondary-color-dark: #3b7a4a;
   --text-color: #ffffff;
   --text-color-secondary: #000000;
 }
@@ -109,6 +111,22 @@ body {
   font-size: .8em;
   text-transform: uppercase;
 }
+.ingresarBtn {
+  background: var(--secondary-color);
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.5em 2em;
+  border-radius: .25em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.ingresarBtn:hover {
+  background: var(--secondary-color-dark);
+  color: var(--text-color);
+  box-shadow: 0 0 10px var(--secondary-color-light);
+} 
 
 main {
   width: 100%;

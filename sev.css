@@ -13,7 +13,9 @@
   --text-color: #ffffff;
   --text-color-secondary: #000000;
 }
-
+html{
+  font-size: 14px;
+}
 body {
   background: linear-gradient(to right, #2F368F, #49985A);
   color: #fff;
@@ -105,7 +107,7 @@ body {
 main {
   width: 100%;
   text-align: center;
-  padding: 2em;
+  padding: 1.5em;
 }
 
 footer {

@@ -4,11 +4,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
 :root {
   --primary-color: #283C8E;
-  
+
   --primary-color-light: #606bb1;
   --secondary-color: #49985A;
   --secondary-color-light: #6abf7c;
@@ -16,9 +18,11 @@
   --text-color: #ffffff;
   --text-color-secondary: #000000;
 }
-html{
+
+html {
   font-size: 14px;
 }
+
 body {
   background: linear-gradient(to right, #283C8E, #49985A);
   color: #fff;
@@ -39,6 +43,23 @@ body {
   justify-content: space-between;
   overflow: hidden;
 }
+.fila{
+  width: 100%;
+  background: linear-gradient(to left, #fff3, #fff0);
+  display: flex;
+  align-items: center;
+justify-content: flex-end;
+height: 3.5em;
+gap: 1em;
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 1/1!important;
+    flex: 0 0 60px;
+  }
+}
 
 .logo {
   width: 100%;
@@ -58,6 +79,9 @@ body {
 .fw-300 {
   font-weight: 300;
 }
+.fw-700 {
+  font-weight: 700;
+}
 
 .fs-1 {
   font-size: 2em;
@@ -65,6 +89,10 @@ body {
 
 .fs-2 {
   font-size: 1.5em;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
 }
 
 .mb-3 {
@@ -99,10 +127,11 @@ body {
   color: var(--primary-color);
   font-size: 2.5em;
 }
+
 .inputDNI:focus {
   outline: none;
- color: var(--primary-color); 
- border-color: var(--primary-color-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color-light);
 }
 
 .inputDNI::placeholder {
@@ -111,6 +140,7 @@ body {
   font-size: .8em;
   text-transform: uppercase;
 }
+
 .ingresarBtn {
   background: var(--secondary-color);
   color: var(--text-color);
@@ -122,11 +152,12 @@ body {
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
+
 .ingresarBtn:hover {
   background: var(--secondary-color-dark);
   color: var(--text-color);
   box-shadow: 0 0 10px var(--secondary-color-light);
-} 
+}
 
 main {
   width: 100%;
@@ -140,12 +171,12 @@ footer {
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   text-align: center;
   overflow: visible;
 
 
-  .azul{
+  .azul {
     background: var(--primary-color);
     min-height: 10px;
     width: 100%;
@@ -157,12 +188,26 @@ footer {
 
 }
 
-  img.ondaInferior {
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-    height: 100%;
-    max-height: 200px;
+img.ondaInferior {
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
 
 
-  }
+}
+
+.fAlerta {
+  position: absolute;
+  bottom: 1.5em;
+  margin: auto;
+  text-align: left;
+  padding: 0 3em;
+  font-size: 1.4em;
+  
+}
+
+.mayuscula {
+  text-transform: uppercase;
+}

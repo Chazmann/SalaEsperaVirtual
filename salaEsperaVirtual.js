@@ -2,12 +2,14 @@
 
   input.addEventListener('input', function (e) {
     // Eliminar todo lo que no sea un número
-    let value = this.value.replace(/\D/g, '').substring(0, 8); // Solo los primeros 8 dígitos
+    let value = this.value.replace(/\D/g, '').substring(0, 8); 
 
-    // Formatear con puntos como mil y millón
-    if (value.length > 6) {
+    // Si el valor es mayor a 8 caracteres, truncarlo
+    if (value.length >= 6) {
+        // Formatear con un punto cada millón
       value = value.replace(/^(\d{2})(\d{3})(\d{3})$/, '$1.$2.$3');
-    } else if (value.length > 3) {
+    } else if (value.length >= 3) {
+        // Formatear con un punto cada mil
       value = value.replace(/^(\d{1,3})(\d{3})$/, '$1.$2');
     }
 

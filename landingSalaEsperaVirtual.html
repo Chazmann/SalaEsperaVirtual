@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Universitario Austral - Sala de Espera Virtual</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="sev.css">
 </head>
 
@@ -23,14 +22,16 @@
       a la sala de espera virtual <br>de la guardia del <br>
       <b>Hospital Universitario Austral</b>
     </blockquote>
-    <h3 class="fw-300 mt-5">Por favor, ingresá el DNI del paciente registrado para ser atendido.</h3>
+    <h3 class="fw-300 mt-5" >Por favor, ingresá el DNI del paciente registrado para ser atendido.</h3>
 <br><br>
-    <form class="mt-5">
+
+    <form class="">
+      <article class="badge hidden" id="badgeAlerta"><span id="alerta"></span><button class="btn-close" onclick="borrarInput()">X</button></article>
       <div class="mb-3 mt-3">
         <input type="text" class="form-control inputDNI" id="dni" placeholder="Ingrese DNI" required>
       </div>
       <div class="mb-3">
-        <button type="submit" class="ingresarBtn" id="btnIngresar">Ingresar</button>
+        <button type="button" class="ingresarBtn" id="btnIngresar" onclick="consultarAPI()">Ingresar</button>
     </form>
     <br>
   

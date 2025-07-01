@@ -15,3 +15,46 @@
 
     this.value = value;
   });
+
+
+
+  function consultarAPI() {
+      const dni = document.getElementById("dni").value.trim();
+      if (!/^\d{8}$/.test(dni)) {
+       badgeAlerta.classList.remove("hidden");
+       badgeAlerta.classList.add("dflex");
+       alerta.innerText = ("Ingresá un DNI válido de 8 dígitos.");
+        return;
+      }
+      const masked = dni.slice(0,2) + "XXXX" + dni.slice(6);
+
+      fetch("proxypac.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          aplicacion: "SalaEspera",
+          operacion: "obtenerPacientesEspera",
+          apiKey: "0dedb690-9ed4-407f-b95b-b945373de84d",
+          filtro: { persNroDocumento: dni }
+        })
+      })
+      .then(r => r.json())
+      .then(body => {
+         alerta.innerText = "No encontrado";
+        if (Array.isArray(body) && body[0]?.paciCantidad != null) {
+          text = `${body[0].paciCantidad} pacientes delante tuyo`;
+        }
+        // Mostrar Paso 3
+        document.getElementById("paso2").classList.add("hidden");
+        document.getElementById("docenmascarado").textContent = masked;
+        document.getElementById("pacientes").textContent = text;
+        document.getElementById("paso3").classList.remove("hidden");
+      })
+      .catch(e => alert("Error de red: " + e));
+    }
+
+    function borrarInput() {
+      badgeAlerta.classList.add("hidden");
+      alerta.innerText = "";   
+      dni.value = "";
+    }

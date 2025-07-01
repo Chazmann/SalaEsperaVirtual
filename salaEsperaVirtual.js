@@ -44,16 +44,12 @@
         if (Array.isArray(body) && body[0]?.paciCantidad != null) {
           text = `${body[0].paciCantidad} pacientes delante tuyo`;
         }
-        // Mostrar Paso 3
-        document.getElementById("paso2").classList.add("hidden");
-        document.getElementById("docenmascarado").textContent = masked;
-        document.getElementById("pacientes").textContent = text;
-        document.getElementById("paso3").classList.remove("hidden");
       })
       .catch(e => alert("Error de red: " + e));
     }
 
     function borrarInput() {
+      badgeAlerta.classList.remove("dflex");
       badgeAlerta.classList.add("hidden");
       alerta.innerText = "";   
       dni.value = "";

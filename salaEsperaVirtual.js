@@ -19,7 +19,12 @@
 
 
   function consultarAPI() {
-      const dni = document.getElementById("dni").value.trim();
+
+      let dni = document.getElementById("dni").value.trim();
+
+       dni = dni.replace(/\./g, "");
+       
+       alert(dni);
       if (!/^\d{8}$/.test(dni)) {
        badgeAlerta.classList.remove("hidden");
        badgeAlerta.classList.add("dflex");

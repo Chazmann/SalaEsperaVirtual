@@ -16,17 +16,18 @@
     <img class="ondas" src="ondas.svg" alt="" width="100%" height="100%">
 
   </header>
-  <main>
+  <main style="padding-bottom: 20vh;">
     <blockquote class="fs-2">
       <b>Bienvenido/a </b><br>
       a la sala de espera virtual <br>de la guardia del <br>
       <b>Hospital Universitario Austral</b>
     </blockquote>
-    <h3 class="fw-300 mt-5" >Por favor, ingresá el DNI del paciente registrado para ser atendido.</h3>
-<br><br>
+    <h3 class="fw-300 mt-5">Por favor, ingresá el DNI del paciente registrado para ser atendido.</h3>
+    <br><br>
 
     <form class="">
-      <article class="badge hidden" id="badgeAlerta"><span id="alerta"></span><button class="btn-close" onclick="borrarInput()">X</button></article>
+      <article class="badge hidden" id="badgeAlerta"><span id="alerta"></span><button class="btn-close"
+          onclick="borrarInput()">X</button></article>
       <div class="mb-3 mt-3">
         <input type="text" class="form-control inputDNI" id="dni" placeholder="Ingrese DNI" required>
       </div>
@@ -34,7 +35,7 @@
         <button type="button" class="ingresarBtn" id="btnIngresar" onclick="consultarAPI()">Ingresar</button>
     </form>
     <br>
-  
+
   </main>
   <div class="enlaceProvisorio" style="color:white; height:40px!important; width: 100%; text-align: center;">
     <a href="infoPacientesDelante.html" style="color:white;">Ver Espera</a>
@@ -42,13 +43,9 @@
 
 
   <footer>
-  <img
-  class="ondaInferior"
-  src="ondaInferior.svg"
-  alt=""
-  srcset="ondaInferior.svg 400w, ondaInferiorLarge.svg 900w"
-  sizes="(min-width: 400px) 33vw, (min-width: 900px) 50vw, 100vw">
-  <span class="azul"></span>
+    <img class="ondaInferior" src="ondaInferior.svg" alt="" srcset="ondaInferior.svg 400w, ondaInferiorLarge.svg 900w"
+      sizes="(min-width: 400px) 33vw, (min-width: 900px) 50vw, 100vw">
+    <span class="azul"></span>
   </footer>
 
   <script src="salaEsperaVirtual.js"></script>
